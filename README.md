@@ -56,18 +56,18 @@ Use the published GitHub Pages assets directly:
 <script src="https://jeonkwan.github.io/kinetic-construct/js/kinetic-serif.js" defer></script>
 ```
 
-Copy `starter/index.html` for a new guide and update its CSS and JavaScript paths for that guide's location. Hosted asset URLs can also be used from other sites.
+Copy `starter/index.html` for a new guide and update its CSS and JavaScript paths for that guide's location. Hosted asset URLs can also be used from other sites. These URLs serve the latest deployed `main`; vendor the assets from a chosen Git commit if a project needs a fixed revision.
 
 ## Machine-Readable Contracts for AI Agents
 
-- [JSON tokens](reference/kinetic-serif.json)
-- [Agent skill](reference/SKILL.md)
-- [Authoring guide](reference/guide.md)
-- [Architecture specimen](reference/architecture-spec.md)
-- [Discovery manifest](llms.txt)
-- [Consolidated prompt context](llms-full.txt)
+- [JSON tokens](https://jeonkwan.github.io/kinetic-construct/reference/kinetic-serif.json)
+- [Agent skill](https://jeonkwan.github.io/kinetic-construct/reference/SKILL.md)
+- [Authoring guide](https://jeonkwan.github.io/kinetic-construct/reference/guide.md)
+- [Architecture specimen](https://jeonkwan.github.io/kinetic-construct/reference/architecture-spec.md)
+- [Discovery manifest](https://jeonkwan.github.io/kinetic-construct/llms.txt)
+- [Consolidated prompt context](https://jeonkwan.github.io/kinetic-construct/llms-full.txt)
 
-Manifest links resolve relative to `llms.txt`, preserving a GitHub Pages project prefix such as `/kinetic-construct/`. The consolidated context includes the complete collected guide, skill, JSON tokens, CSS, runtime, starter, and architecture specimen. When editing those files, refresh their corresponding sections in `llms-full.txt` as well.
+The manifest and agent skill provide absolute published URLs so they remain usable when copied into another project or a standalone prompt. The site and bundled starter retain relative internal asset paths for local previews and downloaded copies. When copying the starter alone, replace its asset paths with the hosted URLs above. The consolidated context includes the complete collected guide, skill, JSON tokens, CSS, runtime, starter, and architecture specimen. When editing those files, refresh their corresponding sections in `llms-full.txt` as well.
 
 ## Create a Repository ZIP
 

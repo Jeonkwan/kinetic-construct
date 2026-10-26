@@ -1,5 +1,7 @@
 # Kinetic Construct (kinetic-serif v1.2.3) Authoring Guide
 
+[Living design system](https://jeonkwan.github.io/kinetic-construct/) · [CSS](https://jeonkwan.github.io/kinetic-construct/css/kinetic-serif.css) · [Runtime](https://jeonkwan.github.io/kinetic-construct/js/kinetic-serif.js) · [JSON tokens](https://jeonkwan.github.io/kinetic-construct/reference/kinetic-serif.json)
+
 ## Philosophy & Communication Principles
 
 1. **Information First**: Structure the explanation before selecting its visual presentation. Architecture diagrams must clarify dependencies, trust perimeters, and failure modes—not demonstrate rendering technology.

@@ -2,15 +2,23 @@
 > A high-density editorial design system with tactile chrome, Warm Alabaster surfaces, and Botanical Field semantic accents.
 
 ## Core Documentation
-- [Design System Guide](reference/guide.md): Editorial before ornamental, 3-role semantic rules, and spatial ergonomics.
-- [Design Tokens (JSON)](reference/kinetic-serif.json): Machine-readable CSS tokens, colors, typography scales, and chrome specifications.
-- [AI Companion Skill](reference/SKILL.md): Standard system prompt instructions for generating compliant architecture explainers.
-- [Architecture Specimen](reference/architecture-spec.md): GCP Terraform specimen with four architectural laws. The supplied Conceptual Model enumeration is missing.
-- [Full LLM Bundle](llms-full.txt): Consolidated guide, agent instructions, tokens, stylesheet, runtime, starter, and architecture fragment.
+
+- [Design System Guide](https://jeonkwan.github.io/kinetic-construct/reference/guide.md): Editorial before ornamental, 3-role semantic rules, and spatial ergonomics.
+- [Design Tokens (JSON)](https://jeonkwan.github.io/kinetic-construct/reference/kinetic-serif.json): Machine-readable CSS tokens, colors, typography scales, and chrome specifications.
+- [AI Companion Skill](https://jeonkwan.github.io/kinetic-construct/reference/SKILL.md): Standard system prompt instructions for generating compliant architecture explainers.
+- [Architecture Specimen](https://jeonkwan.github.io/kinetic-construct/reference/architecture-spec.md): GCP Terraform specimen with four architectural laws. The supplied Conceptual Model enumeration is missing.
+- [Full LLM Bundle](https://jeonkwan.github.io/kinetic-construct/llms-full.txt): Consolidated guide, agent instructions, tokens, stylesheet, runtime, starter, and architecture specimen.
 
 ## Quick CDN Links
-- [Stylesheet](css/kinetic-serif.css)
-- [Runtime JS](js/kinetic-serif.js)
-- [Starter Boilerplate](starter/index.html)
 
-Resolve these links relative to this manifest's URL, including the repository path on GitHub Pages.
+- [Stylesheet](https://jeonkwan.github.io/kinetic-construct/css/kinetic-serif.css)
+- [Runtime JS](https://jeonkwan.github.io/kinetic-construct/js/kinetic-serif.js)
+- [Starter Boilerplate](https://jeonkwan.github.io/kinetic-construct/starter/index.html)
+
+## Site & Source
+
+- [Living Design System](https://jeonkwan.github.io/kinetic-construct/): interactive 10-chapter reference.
+- [Source Repository](https://github.com/Jeonkwan/kinetic-construct): maintained files and deployment workflow.
+- [Complete Repository ZIP](https://jeonkwan.github.io/kinetic-construct/kinetic-construct-v1.2.3.zip): downloadable source bundle.
+
+These absolute URLs can be used from other projects or standalone prompts. Hosted resources track the latest deployed main branch; use a chosen Git commit or vendored assets for a fixed revision.

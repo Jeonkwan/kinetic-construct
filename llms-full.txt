@@ -1,14 +1,24 @@
 # Kinetic Construct (kinetic-serif v1.2.3) Complete LLM Ingestion Bundle
 
+Canonical site: https://jeonkwan.github.io/kinetic-construct/
+Source repository: https://github.com/Jeonkwan/kinetic-construct
+
 Consolidated collected sources for generating compatible technical guides.
 Known source gap: the architecture specimen introduces three planes but supplies no enumeration. Its four recovered architectural laws are included below.
-Resolve asset paths relative to the hosted repository root; starter paths assume the starter/ directory.
+For guides in other projects, use the absolute hosted asset URLs below. The bundled starter retains relative paths for use inside the downloaded repository; replace them with these hosted URLs when copying the starter alone.
+
+```html
+<link rel="stylesheet" href="https://jeonkwan.github.io/kinetic-construct/css/kinetic-serif.css" />
+<script src="https://jeonkwan.github.io/kinetic-construct/js/kinetic-serif.js" defer></script>
+```
 
 ## Authoring guide
-Source: reference/guide.md
+Source: https://jeonkwan.github.io/kinetic-construct/reference/guide.md
 
 <!-- BEGIN reference/guide.md -->
 # Kinetic Construct (kinetic-serif v1.2.3) Authoring Guide
+
+[Living design system](https://jeonkwan.github.io/kinetic-construct/) · [CSS](https://jeonkwan.github.io/kinetic-construct/css/kinetic-serif.css) · [Runtime](https://jeonkwan.github.io/kinetic-construct/js/kinetic-serif.js) · [JSON tokens](https://jeonkwan.github.io/kinetic-construct/reference/kinetic-serif.json)
 
 ## Philosophy & Communication Principles
 
@@ -36,7 +46,7 @@ Source: reference/guide.md
 <!-- END reference/guide.md -->
 
 ## Agent skill
-Source: reference/SKILL.md
+Source: https://jeonkwan.github.io/kinetic-construct/reference/SKILL.md
 
 <!-- BEGIN reference/SKILL.md -->
 ---
@@ -53,9 +63,28 @@ Create high-density, legible technical explainers and living architecture docume
 - Building technical documentation where clarity, information density, and screen efficiency (13"-14" laptops and mobile devices) are prioritized.
 - Presenting complex cloud infrastructure, pipelines, API choreography, or decision matrices.
 
+## Hosted References & Integration
+
+Canonical site: [Kinetic Construct](https://jeonkwan.github.io/kinetic-construct/).
+
+When authoring a guide in another project, use the published assets:
+
+```html
+<link rel="stylesheet" href="https://jeonkwan.github.io/kinetic-construct/css/kinetic-serif.css" />
+<script src="https://jeonkwan.github.io/kinetic-construct/js/kinetic-serif.js" defer></script>
+```
+
+The stylesheet imports Fraunces, Bitter, and Fira Code and defines the complete light/dark token contract. Read the [authoring guide](https://jeonkwan.github.io/kinetic-construct/reference/guide.md) for layout and semantic color rules and the [JSON tokens](https://jeonkwan.github.io/kinetic-construct/reference/kinetic-serif.json) for machine-readable values. Use the [starter HTML](https://jeonkwan.github.io/kinetic-construct/starter/index.html) as a structural example; when copying it to another project, replace its `../css/` and `../js/` references with the hosted URLs above, or copy those asset directories and adjust the paths to their local location.
+
+- [Discovery manifest](https://jeonkwan.github.io/kinetic-construct/llms.txt): discover the published resources.
+- [Complete prompt context](https://jeonkwan.github.io/kinetic-construct/llms-full.txt): ingest the consolidated guide, tokens, assets, starter, and specimen.
+- [Source repository](https://github.com/Jeonkwan/kinetic-construct): inspect or download the maintained sources.
+
+For offline use, bundle the CSS and JavaScript with the guide and provide the fonts locally if they are needed without internet access. The Pages URLs track the repository's latest deployed `main`; vendor assets from a chosen Git commit when a project needs a fixed revision.
+
 ## Core Design Contract & CSS Tokens
 
-Always include the Google Fonts (`Fraunces`, `Bitter`, `Fira Code`) and declare these root tokens:
+The hosted stylesheet includes the complete token set. The excerpt below records the core design values for reference and inline implementations:
 
 ```css
 :root {
@@ -90,7 +119,7 @@ Always include the Google Fonts (`Fraunces`, `Bitter`, `Fira Code`) and declare 
 <!-- END reference/SKILL.md -->
 
 ## Design tokens
-Source: reference/kinetic-serif.json
+Source: https://jeonkwan.github.io/kinetic-construct/reference/kinetic-serif.json
 
 <!-- BEGIN reference/kinetic-serif.json -->
 {
@@ -181,7 +210,7 @@ Source: reference/kinetic-serif.json
 <!-- END reference/kinetic-serif.json -->
 
 ## Stylesheet
-Source: css/kinetic-serif.css
+Source: https://jeonkwan.github.io/kinetic-construct/css/kinetic-serif.css
 
 <!-- BEGIN css/kinetic-serif.css -->
 /* ==========================================================================
@@ -586,7 +615,7 @@ p + p {
 <!-- END css/kinetic-serif.css -->
 
 ## Runtime
-Source: js/kinetic-serif.js
+Source: https://jeonkwan.github.io/kinetic-construct/js/kinetic-serif.js
 
 <!-- BEGIN js/kinetic-serif.js -->
 /**
@@ -855,7 +884,7 @@ Source: js/kinetic-serif.js
 <!-- END js/kinetic-serif.js -->
 
 ## Starter template
-Source: starter/index.html
+Source: https://jeonkwan.github.io/kinetic-construct/starter/index.html
 
 <!-- BEGIN starter/index.html -->
 <!DOCTYPE html>
@@ -926,7 +955,7 @@ Source: starter/index.html
 <!-- END starter/index.html -->
 
 ## Architecture specimen
-Source: reference/architecture-spec.md
+Source: https://jeonkwan.github.io/kinetic-construct/reference/architecture-spec.md
 
 <!-- BEGIN reference/architecture-spec.md -->
 # Reference Architecture Specimen: GCP Terraform Monorepo & State Isolation

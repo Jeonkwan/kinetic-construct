@@ -12,9 +12,28 @@ Create high-density, legible technical explainers and living architecture docume
 - Building technical documentation where clarity, information density, and screen efficiency (13"-14" laptops and mobile devices) are prioritized.
 - Presenting complex cloud infrastructure, pipelines, API choreography, or decision matrices.
 
+## Hosted References & Integration
+
+Canonical site: [Kinetic Construct](https://jeonkwan.github.io/kinetic-construct/).
+
+When authoring a guide in another project, use the published assets:
+
+```html
+<link rel="stylesheet" href="https://jeonkwan.github.io/kinetic-construct/css/kinetic-serif.css" />
+<script src="https://jeonkwan.github.io/kinetic-construct/js/kinetic-serif.js" defer></script>
+```
+
+The stylesheet imports Fraunces, Bitter, and Fira Code and defines the complete light/dark token contract. Read the [authoring guide](https://jeonkwan.github.io/kinetic-construct/reference/guide.md) for layout and semantic color rules and the [JSON tokens](https://jeonkwan.github.io/kinetic-construct/reference/kinetic-serif.json) for machine-readable values. Use the [starter HTML](https://jeonkwan.github.io/kinetic-construct/starter/index.html) as a structural example; when copying it to another project, replace its `../css/` and `../js/` references with the hosted URLs above, or copy those asset directories and adjust the paths to their local location.
+
+- [Discovery manifest](https://jeonkwan.github.io/kinetic-construct/llms.txt): discover the published resources.
+- [Complete prompt context](https://jeonkwan.github.io/kinetic-construct/llms-full.txt): ingest the consolidated guide, tokens, assets, starter, and specimen.
+- [Source repository](https://github.com/Jeonkwan/kinetic-construct): inspect or download the maintained sources.
+
+For offline use, bundle the CSS and JavaScript with the guide and provide the fonts locally if they are needed without internet access. The Pages URLs track the repository's latest deployed `main`; vendor assets from a chosen Git commit when a project needs a fixed revision.
+
 ## Core Design Contract & CSS Tokens
 
-Always include the Google Fonts (`Fraunces`, `Bitter`, `Fira Code`) and declare these root tokens:
+The hosted stylesheet includes the complete token set. The excerpt below records the core design values for reference and inline implementations:
 
 ```css
 :root {
