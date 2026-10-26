@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Kinetic Construct",
+  "version": "1.2.3",
+  "description": "High-density editorial design system with tactile chrome, Warm Alabaster surfaces, and Botanical Field semantic accents.",
+  "tokens": {
+    "surfaces": {
+      "canvas": "#F4F0E6",
+      "surface": "#FAF7F0",
+      "well": "#EAE4D7"
+    },
+    "ink": {
+      "primary": "#111111",
+      "prose": "#222222",
+      "muted": "#4A4740"
+    },
+    "semanticAccents": {
+      "module": {
+        "hex": "#3730A3",
+        "surface": "#E0E7FF",
+        "role": "Blueprint / Reusable Source / Module"
+      },
+      "root": {
+        "hex": "#15803D",
+        "surface": "#DCFCE7",
+        "role": "Execution Boundary / Deployed Root / Runtime"
+      },
+      "state": {
+        "hex": "#9A3412",
+        "surface": "#FFEDD5",
+        "role": "Remote Ledger / State File / Database"
+      }
+    },
+    "typography": {
+      "display": {
+        "family": "Fraunces, Georgia, serif",
+        "weights": [700, 800]
+      },
+      "prose": {
+        "family": "Bitter, Georgia, serif",
+        "size": "0.9375rem",
+        "pixelEquivalent": "15px",
+        "lineHeight": 1.55,
+        "maxMeasure": "65ch"
+      },
+      "mono": {
+        "family": "Fira Code, monospace",
+        "size": "0.8125rem",
+        "pixelEquivalent": "13px",
+        "lineHeight": 1.55
+      }
+    },
+    "chrome": {
+      "border": "2px solid #111111",
+      "shadow": "2px 2px 0px #111111",
+      "shadowHover": "4px 4px 0px #111111",
+      "shadowActive": "1px 1px 0px #111111",
+      "radius": "6px"
+    },
+    "layout": {
+      "railWidth": "220px",
+      "containerMax": "1520px",
+      "outerGutter": "clamp(12px, 1.8vw, 24px)",
+      "sectionGap": "22px",
+      "cardPadding": "14px",
+      "wellPadding": "12px",
+      "gridGap": "12px"
+    },
+    "codeBlock": {
+      "theme": "alabaster-book",
+      "background": "#EAE4D7",
+      "headerBackground": "#DFD7C7",
+      "text": "#1C1917",
+      "gutterNumbers": "#8C8270",
+      "syntax": {
+        "keyword": "#15803D",
+        "string": "#9A3412",
+        "type": "#3730A3",
+        "attribute": "#0369A1",
+        "comment": "#736E62",
+        "punctuation": "#44403C"
+      }
+    }
+  }
+}

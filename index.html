@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinetic Construct — Living Design System</title>
+  <link rel="stylesheet" href="css/kinetic-serif.css" />
+  <link rel="alternate" type="application/json" href="reference/kinetic-serif.json" title="Kinetic Construct Design Contract" />
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header style="position: sticky; top: 0; z-index: 100; background: var(--bg-surface); border-bottom: var(--border-thick); padding: 10px var(--outer-gutter);">
+    <div style="max-width: var(--container-max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;">kinetic construct<span>.</span></span>
+        <span class="role-badge module">v1.2.3 Living System</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" class="btn-tactile primary" onclick="downloadRepoZip(this)" style="font-size: 0.8125rem; min-height: 34px; padding: 4px 12px;">Download .zip 📦</button>
+        <button type="button" id="themeToggleBtn" class="btn-tactile" onclick="toggleTheme()" style="font-size: 0.8125rem; min-height: 34px; padding: 4px 10px;">🌙 Nocturnal</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <div class="layout-grid">
+
+      <!-- 220px Left Navigation Rail -->
+      <aside class="sidebar-rail" aria-label="System Chapters">
+        <span class="rail-tag">Chapters</span>
+        <a href="#ch01" class="rail-link active">01 · Premise</a>
+        <a href="#ch02" class="rail-link">02 · Principles</a>
+        <a href="#ch03" class="rail-link">03 · State Topology</a>
+        <a href="#ch04" class="rail-link">04 · Workflows</a>
+        <a href="#ch05" class="rail-link">05 · Patterns</a>
+        <a href="#ch06" class="rail-link">06 · Guardrails</a>
+        <a href="#ch07" class="rail-link">07 · Foundations</a>
+        <a href="#ch08" class="rail-link">08 · Components</a>
+        <a href="#ch09" class="rail-link">09 · Decision Lab</a>
+        <a href="#ch10" class="rail-link">10 · Agent Contract</a>
+      </aside>
+
+      <!-- Main Stage -->
+      <main class="main-stage">
+
+        <!-- 01. PREMISE -->
+        <section id="ch01" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill module">01 / EDITORIAL PREMISE</span>
+            <h1>Technical learning, reimagined.</h1>
+          </div>
+          <p>
+            Complex cloud infrastructure requires clarity over ornament. <strong>Kinetic Construct</strong> blends expressive display serifs (<em>Fraunces</em>), screen-calibrated slab reading prose (<em>Bitter</em> at 15px), and tactile physical affordances with strict 3-role semantic color encoding.
+          </p>
+          <div style="display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap;">
+            <a href="#ch03" class="btn-tactile primary">Explore Live State Topology →</a>
+            <button type="button" class="btn-tactile" onclick="downloadRepoZip(this)">Download Complete Repository (.zip) 📦</button>
+          </div>
+        </section>
+
+        <!-- 02. PRINCIPLES -->
+        <section id="ch02" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill root">02 / CORE PRINCIPLES</span>
+            <h2>Three rules of technical communication.</h2>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--grid-gap);">
+            <div class="panel-block">
+              <strong style="color: var(--accent-module);">1. Semantic over Decorative</strong>
+              <p>Colors encode functional roles: Indigo for blueprints, Forest Moss for active roots, and Burnt Sienna for state ledgers.</p>
+            </div>
+            <div class="panel-block">
+              <strong style="color: var(--accent-root);">2. Compact Spatial Rhythm</strong>
+              <p>Eliminate nested card padding. A 220px rail and side-docked workbenches keep content visible without endless vertical scrolling.</p>
+            </div>
+            <div class="panel-block">
+              <strong style="color: var(--accent-state);">3. Mechanical Affordances</strong>
+              <p>Interactive elements depress on click with a 2px offset, giving developers immediate tactile feedback.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 03. STATE TOPOLOGY -->
+        <section id="ch03" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill state">03 / INTERACTIVE TOPOLOGY</span>
+            <h2>One repository. Independent states.</h2>
+          </div>
+          <p>
+            Source boundaries and state boundaries solve different problems. Click any node below to inspect its live contract and blast radius.
+          </p>
+          <div class="dock-workbench">
+            <div class="panel-block">
+              <span class="rail-tag">SELECT SYSTEM NODE</span>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button type="button" class="btn-tactile selected node-btn" onclick="selectTopologyNode(this, 'module', 'modules/cloud-sql-ha', 'modules/cloud-sql-ha/main.tf', 'resource &quot;google_sql_database_instance&quot; &quot;primary&quot; {\n  name             = var.instance_name\n  database_version = &quot;POSTGRES_15&quot;\n}', 'Zero direct runtime risk. Consumed as a versioned blueprint.')">
+                  <span>Blueprint: modules/cloud-sql-ha</span>
+                </button>
+                <button type="button" class="btn-tactile node-btn" onclick="selectTopologyNode(this, 'root', 'envs/prod/cloud-sql', 'envs/prod/cloud-sql/terragrunt.hcl', 'terraform {\n  source = &quot;../../../modules/cloud-sql-ha&quot;\n}\ninputs = {\n  tier = &quot;db-custom-8-32768&quot;\n}', 'Strict production isolation. Blast radius bounded to prod DB.')">
+                  <span>Root: envs/prod/cloud-sql</span>
+                </button>
+                <button type="button" class="btn-tactile node-btn" onclick="selectTopologyNode(this, 'state', 'gs://tfstate-prod/cloud-sql.tfstate', 'envs/prod/cloud-sql/backend.tf', 'terraform {\n  backend &quot;gcs&quot; {\n    bucket = &quot;company-tfstate-prod&quot;\n    prefix = &quot;cloud-sql&quot;\n  }\n}', 'Encrypted remote ledger with CMEK and single-writer locks.')">
+                  <span>Ledger: gs://tfstate-prod/cloud-sql</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel-block">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span id="topologyInspBadge" class="role-badge module">MODULE BLUEPRINT</span>
+                <span id="topologyInspFile" style="font-family: var(--font-mono); font-size: 0.8125rem;">modules/cloud-sql-ha/main.tf</span>
+              </div>
+              <h3 id="topologyInspTitle">modules/cloud-sql-ha</h3>
+              <p id="topologyInspBlast" style="font-size: 0.875rem; color: var(--ink-muted);">Zero direct runtime risk. Consumed as a versioned blueprint.</p>
+
+              <div class="code-wrapper">
+                <div class="code-header-bar">
+                  <div class="file-tab"><span>HCL Contract</span></div>
+                  <button type="button" class="copy-button" onclick="copySnippet(this)">Copy</button>
+                </div>
+                <div class="code-body">
+                  <pre class="code-lines-col"><code id="topologyInspCode">resource "google_sql_database_instance" "primary" {
+  name             = var.instance_name
+  database_version = "POSTGRES_15"
+}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04. WORKFLOWS -->
+        <section id="ch04" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill module">04 / RELEASE CHOREOGRAPHY</span>
+            <h2>Deterministic release pipelines.</h2>
+          </div>
+          <p>
+            Avoid the "double-release tax" by deploying from Git commit SHAs rather than unvalidated tag umbrellas.
+          </p>
+          <div class="panel-block">
+            <span class="rail-tag">PIPELINE STAGES</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+              <div class="panel-block"><strong>01 · Plan</strong><small>Speculative plans with checksum locking.</small></div>
+              <div class="panel-block"><strong>02 · Gate</strong><small>Two-person review approval barrier.</small></div>
+              <div class="panel-block"><strong>03 · Apply</strong><small>Locked plan application with single writer.</small></div>
+              <div class="panel-block"><strong>04 · Ledger</strong><small>Git commit SHA deployment record logged.</small></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 05. PATTERNS -->
+        <section id="ch05" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill root">05 / PATTERN LIBRARY</span>
+            <h2>Proven monorepo topologies.</h2>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--grid-gap);">
+            <div class="panel-block">
+              <strong>Pattern A · Directory-Bounded Roots</strong>
+              <p>Each root owns its backend block. Simple to understand, native Terraform CLI compatibility, zero extra tooling.</p>
+            </div>
+            <div class="panel-block">
+              <strong>Pattern B · DRY Terragrunt Stacks</strong>
+              <p>Backend and provider inheritance defined once at root level. Eliminates boilerplate across hundreds of micro-states.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 06. GUARDRAILS -->
+        <section id="ch06" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill state">06 / OPERATIONAL GUARDRAILS</span>
+            <h2>Four infrastructure safety laws.</h2>
+          </div>
+          <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 6px;">
+            <li><strong>Single Writer per Root:</strong> Prevent concurrent state locks and stale execution ordering.</li>
+            <li><strong>Least-Privilege Identities:</strong> Service accounts must be scoped per blast perimeter, not shared globally.</li>
+            <li><strong>Atomic Dependency Planning:</strong> Local module changes must automatically trigger plans for downstream consumers.</li>
+            <li><strong>State Is Not a Distributed Transaction:</strong> Design roots to tolerate partial apply failures safely.</li>
+          </ul>
+        </section>
+
+        <!-- 07. FOUNDATIONS -->
+        <section id="ch07" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill module">07 / DESIGN TOKENS</span>
+            <h2>Visual foundations &amp; semantic palette.</h2>
+          </div>
+          <p>Click any token below to copy its CSS custom variable name.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px;">
+            <button type="button" class="btn-tactile" onclick="navigator.clipboard.writeText('var(--bg-canvas)')">--bg-canvas<br><small>#F4F0E6</small></button>
+            <button type="button" class="btn-tactile" onclick="navigator.clipboard.writeText('var(--bg-surface)')">--bg-surface<br><small>#FAF7F0</small></button>
+            <button type="button" class="btn-tactile" onclick="navigator.clipboard.writeText('var(--accent-module)')" style="background: var(--accent-module-bg); color: var(--accent-module);">--accent-module<br><small>#3730A3</small></button>
+            <button type="button" class="btn-tactile" onclick="navigator.clipboard.writeText('var(--accent-root)')" style="background: var(--accent-root-bg); color: var(--accent-root);">--accent-root<br><small>#15803D</small></button>
+            <button type="button" class="btn-tactile" onclick="navigator.clipboard.writeText('var(--accent-state)')" style="background: var(--accent-state-bg); color: var(--accent-state);">--accent-state<br><small>#9A3412</small></button>
+          </div>
+        </section>
+
+        <!-- 08. COMPONENTS -->
+        <section id="ch08" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill root">08 / COMPONENT WORKSHOP</span>
+            <h2>Interactive primitives.</h2>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+            <button type="button" class="btn-tactile primary">Primary Action</button>
+            <button type="button" class="btn-tactile">Standard Action</button>
+            <span class="role-badge module">Blueprint Pill</span>
+            <span class="role-badge root">Runtime Pill</span>
+            <span class="role-badge state">Ledger Pill</span>
+          </div>
+        </section>
+
+        <!-- 09. DECISION LAB -->
+        <section id="ch09" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill state">09 / DECISION LAB</span>
+            <h2>Architecture recommendation engine.</h2>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--grid-gap);">
+            <div>
+              <label class="rail-tag" for="labTeamSize">Team Scale</label>
+              <select id="labTeamSize" class="btn-tactile" style="width: 100%;" onchange="calculateTopologyRecommendation()">
+                <option value="small">1 - 4 Engineers</option>
+                <option value="large">5+ Distributed Teams</option>
+              </select>
+            </div>
+            <div>
+              <label class="rail-tag" for="labBlastRisk">Blast Radius Tolerance</label>
+              <select id="labBlastRisk" class="btn-tactile" style="width: 100%;" onchange="calculateTopologyRecommendation()">
+                <option value="standard">Standard (Moderate)</option>
+                <option value="strict">Strict (Zero Shared Blast)</option>
+              </select>
+            </div>
+          </div>
+          <div id="labResultCard" class="panel-block" style="margin-top: 10px;">
+            <div class="role-badge root" style="margin-bottom: 8px;">RECOMMENDED ARCHITECTURE</div>
+            <h3>Lightweight Monorepo with Shared Modules</h3>
+            <p>Maintain root configurations in a monorepo versioned by Git commit SHAs, referencing internal modules directly with change detection.</p>
+          </div>
+        </section>
+
+        <!-- 10. DOWNLOAD & INTEGRATE HUB -->
+        <section id="ch10" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill module">10 / INTEGRATION &amp; DOWNLOADS</span>
+            <h2>Download and use Kinetic Construct.</h2>
+          </div>
+          <p>
+            Download the complete repository bundle or link directly to the stylesheet and runtime from your projects.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 8px;">
+            <div class="panel-block">
+              <strong>Complete Package</strong>
+              <p>Everything including CSS, JS, starter template, JSON tokens, and AI agent skills.</p>
+              <button type="button" class="btn-tactile primary" onclick="downloadRepoZip(this)">Download Repository (.zip) 📦</button>
+            </div>
+
+            <div class="panel-block">
+              <strong>Agent Discovery Manifests</strong>
+              <p>Machine-readable endpoints for AI coding agents and automated tooling.</p>
+              <div style="display: flex; gap: 6px;">
+                <a href="reference/kinetic-serif.json" class="btn-tactile" style="flex: 1;">tokens.json</a>
+                <a href="reference/SKILL.md" class="btn-tactile" style="flex: 1;">SKILL.md</a>
+                <a href="llms.txt" class="btn-tactile" style="flex: 1;">llms.txt</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <footer style="margin-top: 40px; border-top: var(--border-thick); background: var(--bg-surface); padding: 20px var(--outer-gutter); text-align: center; font-family: var(--font-mono); font-size: 0.8125rem;">
+    Kinetic Construct v1.2.3 · Living Design System · Hosted on GitHub Pages
+  </footer>
+
+  <script src="js/kinetic-serif.js"></script>
+</body>
+</html>

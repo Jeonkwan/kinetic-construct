@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Technical Guide — Kinetic Construct Starter</title>
+  <link rel="stylesheet" href="../css/kinetic-serif.css" />
+</head>
+<body>
+
+  <!-- Minimal Header -->
+  <header style="position: sticky; top: 0; z-index: 100; background: var(--bg-surface); border-bottom: var(--border-thick); padding: 10px var(--outer-gutter);">
+    <div style="max-width: var(--container-max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;">kinetic construct<span>.</span></span>
+      <button type="button" id="themeToggleBtn" class="btn-tactile" onclick="toggleTheme()" style="font-size: 0.8125rem; min-height: 34px;">🌙 Nocturnal</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <div class="layout-grid">
+
+      <!-- 220px Left Rail -->
+      <aside class="sidebar-rail">
+        <span class="rail-tag">Chapters</span>
+        <a href="#intro" class="rail-link active">01 · Introduction</a>
+        <a href="#system" class="rail-link">02 · Architecture</a>
+      </aside>
+
+      <!-- Content Stage -->
+      <main class="main-stage">
+        <section id="intro" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill module">01 / OVERVIEW</span>
+            <h1>Your Guide Title Here.</h1>
+          </div>
+          <p>
+            Start writing your technical documentation using the locked <strong>Bitter 15px</strong> body prose measure.
+          </p>
+        </section>
+
+        <section id="system" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill root">02 / ARCHITECTURE</span>
+            <h2>System Topology.</h2>
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header-bar">
+              <div class="file-tab"><span>main.tf</span></div>
+              <button type="button" class="copy-button" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <div class="code-body">
+              <pre class="code-lines-col"><code>terraform {
+  required_version = ">= 1.9.0"
+}</code></pre>
+            </div>
+          </div>
+        </section>
+      </main>
+
+    </div>
+  </div>
+
+  <script src="../js/kinetic-serif.js"></script>
+</body>
+</html>

@@ -1,0 +1,944 @@
+# Kinetic Construct (kinetic-serif v1.2.3) Complete LLM Ingestion Bundle
+
+Consolidated collected sources for generating compatible technical guides.
+Known source gap: the architecture specimen introduces three planes but supplies no enumeration. Its four recovered architectural laws are included below.
+Resolve asset paths relative to the hosted repository root; starter paths assume the starter/ directory.
+
+## Authoring guide
+Source: reference/guide.md
+
+<!-- BEGIN reference/guide.md -->
+# Kinetic Construct (kinetic-serif v1.2.3) Authoring Guide
+
+## Philosophy & Communication Principles
+
+1. **Information First**: Structure the explanation before selecting its visual presentation. Architecture diagrams must clarify dependencies, trust perimeters, and failure modes—not demonstrate rendering technology.
+2. **Strict Semantic 3-Role Accents (Botanical Field)**:
+   - **Indigo (`#3730A3`)**: Blueprint, module source, definition, contract schema.
+   - **Forest Moss (`#15803D`)**: Runtime boundary, deployed root, active service, pipeline execution.
+   - **Burnt Sienna (`#9A3412`)**: State storage, persistent ledger, database backend, immutable log.
+   *Rule: Never use these three colors for arbitrary decoration.*
+3. **Glare-Free Surfaces**:
+   - Use `--bg-canvas: #F4F0E6` for viewport backdrops.
+   - Use `--bg-surface: #FAF7F0` for elevated content cards.
+   - Use `--bg-well: #EAE4D7` for recessed wells, code backgrounds, and callouts.
+   - Pure `#FFFFFF` is prohibited to prevent high-contrast glare on OLED and laptop screens.
+4. **Locked Typography Contract**:
+   - Display Headings: `Fraunces, Georgia, serif` (Weights 700-800, line-height 1.15-1.22).
+   - Reading Prose: `Bitter, Georgia, serif` at `15px` (`0.9375rem`), line-height `1.55`, constrained to `max-width: 65ch`.
+   - Technical & Code: `Fira Code, monospace` at `13px` (`0.8125rem`), line-height `1.55`.
+   - Badges & Eyebrows: Strict floor of `13px` (`0.8125rem`). Never use sub-12px micro-text.
+5. **Spatial Density & Layout**:
+   - Navigation: Compact `220px` sticky left rail (`sidebar-rail`) that collapses into horizontal pills on mobile viewports.
+   - Flush Cards: Do not wrap sections in redundant outer container boxes with compound nested padding.
+   - Side-Docked Workbench: On viewports >= 960px, dock topology graphs side-by-side with code/contract inspectors (`1.25fr 1fr`).
+   - Tactile Chrome: `2px solid #111111` borders with `2px 2px 0px #111111` shadows. Interactive elements depress by `(1px, 1px)` on `:active`.
+<!-- END reference/guide.md -->
+
+## Agent skill
+Source: reference/SKILL.md
+
+<!-- BEGIN reference/SKILL.md -->
+---
+name: kinetic-serif
+description: Design and build technical explainers, interactive architecture guides, system documentation, and web pages using the Kinetic Construct (kinetic-serif v1.2.3) design system. Use whenever the user asks to use kinetic-serif or Kinetic Construct, wants modern high-contrast editorial typography (Fraunces + Bitter + Fira Code), or needs compact technical documentation with Warm Alabaster surfaces, Botanical Field semantic accents, crisp 2px tactile shadows, and Alabaster Book code blocks.
+---
+# Kinetic Construct (kinetic-serif v1.2.3)
+
+Create high-density, legible technical explainers and living architecture documentation using the calibrated Kinetic Construct design language.
+
+## When to Use
+
+- The user requests an interactive architecture explainer, technical guide, system topology, or living design system in `kinetic-serif` or **Kinetic Construct**.
+- Building technical documentation where clarity, information density, and screen efficiency (13"-14" laptops and mobile devices) are prioritized.
+- Presenting complex cloud infrastructure, pipelines, API choreography, or decision matrices.
+
+## Core Design Contract & CSS Tokens
+
+Always include the Google Fonts (`Fraunces`, `Bitter`, `Fira Code`) and declare these root tokens:
+
+```css
+:root {
+  --bg-canvas: #F4F0E6;       /* Warm Alabaster canvas */
+  --bg-surface: #FAF7F0;      /* Elevated card surface */
+  --bg-well: #EAE4D7;         /* Recessed code well */
+  --ink-primary: #111111;     /* Primary chrome & heading ink */
+  --ink-prose: #222222;       /* Body prose ink */
+  --ink-muted: #4A4740;       /* Secondary captions */
+
+  --accent-module: #3730A3;   /* Indigo: Blueprint / Module */
+  --accent-module-bg: #E0E7FF;
+  --accent-root: #15803D;     /* Forest Moss: Runtime Root */
+  --accent-root-bg: #DCFCE7;
+  --accent-state: #9A3412;    /* Burnt Sienna: State Ledger */
+  --accent-state-bg: #FFEDD5;
+
+  --border-thick: 2px solid var(--ink-primary);
+  --shadow-tactile: 2px 2px 0px var(--ink-primary);
+  --radius-subtle: 6px;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-prose: 'Bitter', Georgia, serif;       /* 15px / 0.9375rem */
+  --font-mono: 'Fira Code', monospace;         /* 13px / 0.8125rem */
+
+  --container-max: 1520px;
+  --rail-width: 220px;
+  --outer-gutter: clamp(12px, 1.8vw, 24px);
+  --section-gap: 22px;
+}
+```
+<!-- END reference/SKILL.md -->
+
+## Design tokens
+Source: reference/kinetic-serif.json
+
+<!-- BEGIN reference/kinetic-serif.json -->
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Kinetic Construct",
+  "version": "1.2.3",
+  "description": "High-density editorial design system with tactile chrome, Warm Alabaster surfaces, and Botanical Field semantic accents.",
+  "tokens": {
+    "surfaces": {
+      "canvas": "#F4F0E6",
+      "surface": "#FAF7F0",
+      "well": "#EAE4D7"
+    },
+    "ink": {
+      "primary": "#111111",
+      "prose": "#222222",
+      "muted": "#4A4740"
+    },
+    "semanticAccents": {
+      "module": {
+        "hex": "#3730A3",
+        "surface": "#E0E7FF",
+        "role": "Blueprint / Reusable Source / Module"
+      },
+      "root": {
+        "hex": "#15803D",
+        "surface": "#DCFCE7",
+        "role": "Execution Boundary / Deployed Root / Runtime"
+      },
+      "state": {
+        "hex": "#9A3412",
+        "surface": "#FFEDD5",
+        "role": "Remote Ledger / State File / Database"
+      }
+    },
+    "typography": {
+      "display": {
+        "family": "Fraunces, Georgia, serif",
+        "weights": [700, 800]
+      },
+      "prose": {
+        "family": "Bitter, Georgia, serif",
+        "size": "0.9375rem",
+        "pixelEquivalent": "15px",
+        "lineHeight": 1.55,
+        "maxMeasure": "65ch"
+      },
+      "mono": {
+        "family": "Fira Code, monospace",
+        "size": "0.8125rem",
+        "pixelEquivalent": "13px",
+        "lineHeight": 1.55
+      }
+    },
+    "chrome": {
+      "border": "2px solid #111111",
+      "shadow": "2px 2px 0px #111111",
+      "shadowHover": "4px 4px 0px #111111",
+      "shadowActive": "1px 1px 0px #111111",
+      "radius": "6px"
+    },
+    "layout": {
+      "railWidth": "220px",
+      "containerMax": "1520px",
+      "outerGutter": "clamp(12px, 1.8vw, 24px)",
+      "sectionGap": "22px",
+      "cardPadding": "14px",
+      "wellPadding": "12px",
+      "gridGap": "12px"
+    },
+    "codeBlock": {
+      "theme": "alabaster-book",
+      "background": "#EAE4D7",
+      "headerBackground": "#DFD7C7",
+      "text": "#1C1917",
+      "gutterNumbers": "#8C8270",
+      "syntax": {
+        "keyword": "#15803D",
+        "string": "#9A3412",
+        "type": "#3730A3",
+        "attribute": "#0369A1",
+        "comment": "#736E62",
+        "punctuation": "#44403C"
+      }
+    }
+  }
+}
+<!-- END reference/kinetic-serif.json -->
+
+## Stylesheet
+Source: css/kinetic-serif.css
+
+<!-- BEGIN css/kinetic-serif.css -->
+/* ==========================================================================
+   KINETIC CONSTRUCT (kinetic-serif v1.2.3)
+   Core Design System Tokens, Typography Floors & Component Primitives
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;0,600;1,400&family=Fira+Code:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,700..800;1,9..144,700&display=swap');
+
+:root {
+  /* Glare-Free Paper Surfaces & Ink (Warm Alabaster Default) */
+  --bg-canvas: #F4F0E6;
+  --bg-surface: #FAF7F0;
+  --bg-well: #EAE4D7;
+  --ink-primary: #111111;
+  --ink-prose: #222222;
+  --ink-muted: #4A4740;
+
+  /* Botanical Field 3-Role Architecture Accents */
+  --accent-module: #3730A3;
+  --accent-module-bg: #E0E7FF;
+  --accent-root: #15803D;
+  --accent-root-bg: #DCFCE7;
+  --accent-state: #9A3412;
+  --accent-state-bg: #FFEDD5;
+
+  /* Tactile Chrome & Mechanical Depth */
+  --border-thick: 2px solid var(--ink-primary);
+  --border-hairline: 1px solid var(--ink-primary);
+  --shadow-tactile: 2px 2px 0px var(--ink-primary);
+  --shadow-tactile-hover: 4px 4px 0px var(--ink-primary);
+  --shadow-tactile-active: 1px 1px 0px var(--ink-primary);
+  --radius-subtle: 6px;
+
+  /* Typography Specifications (Locked v1.2.3 Contract) */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-prose: 'Bitter', Georgia, serif;
+  --font-mono: 'Fira Code', monospace;
+
+  /* Spatial & Density Specifications (Compact & Flush) */
+  --container-max: 1520px;
+  --rail-width: 220px;
+  --outer-gutter: clamp(12px, 1.8vw, 24px);
+  --section-gap: 22px;
+  --card-pad: 14px;
+  --well-pad: 12px;
+  --grid-gap: 12px;
+
+  /* Alabaster Book Well Code Block Palette */
+  --code-bg: #EAE4D7;
+  --code-header-bg: #DFD7C7;
+  --code-text: #1C1917;
+  --code-num: #8C8270;
+  --syn-keyword: #15803D;
+  --syn-string: #9A3412;
+  --syn-type: #3730A3;
+  --syn-attr: #0369A1;
+  --syn-comment: #736E62;
+  --syn-punct: #44403C;
+}
+
+[data-theme="dark"] {
+  --bg-canvas: #0E131B;
+  --bg-surface: #161F2C;
+  --bg-well: #1E293B;
+  --ink-primary: #F1F5F9;
+  --ink-prose: #E2E8F0;
+  --ink-muted: #94A3B8;
+
+  --accent-module: #818CF8;
+  --accent-module-bg: rgba(99, 102, 241, 0.18);
+  --accent-root: #34D399;
+  --accent-root-bg: rgba(16, 185, 129, 0.18);
+  --accent-state: #FB923C;
+  --accent-state-bg: rgba(249, 115, 22, 0.18);
+
+  --code-bg: #111618;
+  --code-header-bg: #171E20;
+  --code-text: #E5E9E7;
+  --code-num: #5B6B67;
+  --syn-keyword: #6EE7B7;
+  --syn-string: #FDBA74;
+  --syn-type: #93C5FD;
+  --syn-attr: #C4B5FD;
+  --syn-comment: #6B7C77;
+  --syn-punct: #9CA3AF;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--ink-prose);
+  font-family: var(--font-prose);
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink-primary);
+  line-height: 1.18;
+}
+
+h1 { font-size: clamp(1.75rem, 2.4vw, 2.2rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.35rem, 1.8vw, 1.65rem); font-weight: 700; letter-spacing: -0.015em; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+
+p {
+  max-width: 65ch;
+  color: var(--ink-prose);
+}
+
+p + p {
+  margin-top: 10px;
+}
+
+.app-shell {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--outer-gutter);
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  gap: var(--grid-gap);
+  align-items: start;
+}
+
+.sidebar-rail {
+  position: sticky;
+  top: 76px;
+  background: var(--bg-surface);
+  border: var(--border-thick);
+  border-radius: var(--radius-subtle);
+  padding: var(--card-pad);
+  box-shadow: var(--shadow-tactile);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
+}
+
+.rail-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.rail-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-primary);
+  background: var(--bg-well);
+  border: 1px solid var(--ink-primary);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.1s ease;
+}
+
+.rail-link:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 1px 1px 0px var(--ink-primary);
+}
+
+.rail-link.active {
+  background: var(--accent-module-bg);
+  color: var(--accent-module);
+  border: 1.5px solid var(--accent-module);
+  font-weight: 700;
+}
+
+.main-stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  min-width: 0;
+}
+
+.content-card {
+  background: var(--bg-surface);
+  border: var(--border-thick);
+  border-radius: var(--radius-subtle);
+  padding: var(--card-pad);
+  box-shadow: var(--shadow-tactile);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--ink-primary);
+}
+
+.role-badge, .eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ink-primary);
+  background: var(--bg-well);
+  color: var(--ink-primary);
+  width: fit-content;
+}
+
+.role-badge.module, .eyebrow-pill.module {
+  background: var(--accent-module-bg);
+  color: var(--accent-module);
+  border-color: var(--accent-module);
+}
+
+.role-badge.root, .eyebrow-pill.root {
+  background: var(--accent-root-bg);
+  color: var(--accent-root);
+  border-color: var(--accent-root);
+}
+
+.role-badge.state, .eyebrow-pill.state {
+  background: var(--accent-state-bg);
+  color: var(--accent-state);
+  border-color: var(--accent-state);
+}
+
+.btn-tactile {
+  appearance: none;
+  background: var(--bg-surface);
+  color: var(--ink-primary);
+  border: var(--border-thick);
+  border-radius: 5px;
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-tactile);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  text-decoration: none;
+}
+
+.btn-tactile:hover {
+  box-shadow: var(--shadow-tactile-hover);
+  transform: translate(-1px, -1px);
+}
+
+.btn-tactile:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-tactile-active);
+}
+
+.btn-tactile.primary {
+  background: var(--accent-root);
+  color: #FFFFFF;
+  border-color: var(--ink-primary);
+}
+
+.dock-workbench {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
+.panel-block {
+  background: var(--bg-well);
+  border: 1.5px solid var(--ink-primary);
+  border-radius: 5px;
+  padding: var(--well-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.code-wrapper {
+  background: var(--code-bg);
+  border: var(--border-thick);
+  border-radius: var(--radius-subtle);
+  box-shadow: var(--shadow-tactile);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.code-header-bar {
+  background: var(--code-header-bg);
+  border-bottom: 2px solid var(--ink-primary);
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+}
+
+.file-tab {
+  background: var(--code-bg);
+  color: var(--code-text);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-left: 1.5px solid var(--ink-primary);
+  border-right: 1.5px solid var(--ink-primary);
+  border-bottom: 2px solid var(--code-bg);
+  margin-bottom: -2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-button {
+  appearance: none;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--code-text);
+  border: 1px solid var(--ink-primary);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.copy-button:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.code-body {
+  padding: 12px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--code-text);
+  display: flex;
+}
+
+.line-numbers-col {
+  user-select: none;
+  text-align: right;
+  padding-right: 12px;
+  margin-right: 12px;
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  color: var(--code-num);
+  display: flex;
+  flex-direction: column;
+}
+
+.code-lines-col {
+  flex: 1;
+  white-space: pre;
+  margin: 0;
+  padding: 0;
+}
+
+.syn-kwd { color: var(--syn-keyword); font-weight: 600; }
+.syn-str { color: var(--syn-string); }
+.syn-typ { color: var(--syn-type); }
+.syn-att { color: var(--syn-attr); }
+.syn-com { color: var(--syn-comment); font-style: italic; }
+.syn-pct { color: var(--syn-punct); }
+
+@media (max-width: 960px) {
+  .layout-grid,
+  .dock-workbench {
+    grid-template-columns: 1fr;
+  }
+  .sidebar-rail {
+    position: static;
+    max-height: none;
+  }
+}
+<!-- END css/kinetic-serif.css -->
+
+## Runtime
+Source: js/kinetic-serif.js
+
+<!-- BEGIN js/kinetic-serif.js -->
+/**
+ * Kinetic Construct (kinetic-serif v1.2.3) Runtime
+ * Manages theme toggling, node graph inspection, copy helpers,
+ * and client-side zero-dependency ZIP archive creation.
+ */
+
+(function () {
+  'use strict';
+
+  const assetBase = new URL('../', document.currentScript.src);
+
+  // 1. Theme Toggle
+  window.toggleTheme = function () {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    try { localStorage.setItem('kinetic-theme', next); } catch (_) { /* Storage may be disabled. */ }
+    const btn = document.getElementById('themeToggleBtn');
+    if (btn) btn.textContent = next === 'dark' ? '☀️ Daylight' : '🌙 Nocturnal';
+  };
+
+  let saved;
+  try { saved = localStorage.getItem('kinetic-theme'); } catch (_) { /* Use the system preference. */ }
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  const themeButton = document.getElementById('themeToggleBtn');
+  if (themeButton) {
+    themeButton.textContent = document.documentElement.getAttribute('data-theme') === 'dark'
+      ? '☀️ Daylight' : '🌙 Nocturnal';
+  }
+
+  // 2. Clipboard Copy Helper
+  window.copySnippet = function (btn, textToCopy) {
+    const text = textToCopy || btn.closest('.code-wrapper').querySelector('.code-lines-col').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.innerText;
+      btn.innerText = 'Copied! ✓';
+      setTimeout(() => { btn.innerText = orig; }, 1800);
+    });
+  };
+
+  // 3. Topology Inspector Handler
+  window.selectTopologyNode = function (btn, role, title, file, code, blastDesc) {
+    document.querySelectorAll('.node-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+
+    const badge = document.getElementById('topologyInspBadge');
+    if (badge) {
+      badge.className = `role-badge ${role}`;
+      badge.textContent = role === 'module' ? 'MODULE BLUEPRINT' : role === 'root' ? 'EXECUTION ROOT' : 'REMOTE STATE LEDGER';
+    }
+
+    const titleEl = document.getElementById('topologyInspTitle');
+    if (titleEl) titleEl.textContent = title;
+
+    const fileEl = document.getElementById('topologyInspFile');
+    if (fileEl) fileEl.textContent = file;
+
+    const codeEl = document.getElementById('topologyInspCode');
+    if (codeEl) codeEl.textContent = code;
+
+    const blastEl = document.getElementById('topologyInspBlast');
+    if (blastEl) blastEl.textContent = blastDesc;
+  };
+
+  // 4. Decision Lab Engine
+  window.calculateTopologyRecommendation = function () {
+    const teamSize = document.getElementById('labTeamSize')?.value || 'small';
+    const blastRisk = document.getElementById('labBlastRisk')?.value || 'standard';
+    const resultCard = document.getElementById('labResultCard');
+    if (!resultCard) return;
+
+    if (teamSize === 'large' || blastRisk === 'strict') {
+      resultCard.innerHTML = `
+        <div class="role-badge state" style="margin-bottom: 8px;">RECOMMENDED ARCHITECTURE</div>
+        <h3>Isolated Roots with Granular GCS State Boundaries</h3>
+        <p>Deploy independent root configurations per service and environment with dedicated service accounts and separate state buckets to minimize blast radius.</p>
+      `;
+    } else {
+      resultCard.innerHTML = `
+        <div class="role-badge root" style="margin-bottom: 8px;">RECOMMENDED ARCHITECTURE</div>
+        <h3>Lightweight Monorepo with Shared Modules</h3>
+        <p>Maintain root configurations in a monorepo versioned by Git commit SHAs, referencing internal modules directly with change detection.</p>
+      `;
+    }
+  };
+
+  // 5. Zero-Dependency In-Browser ZIP Builder
+  // Implements standard PKZip format using pure typed arrays
+  function crc32(bytes) {
+    let crc = 0xFFFFFFFF;
+    for (const byte of bytes) {
+      crc ^= byte;
+      for (let bit = 0; bit < 8; bit++) {
+        crc = (crc >>> 1) ^ ((crc & 1) ? 0xEDB88320 : 0);
+      }
+    }
+    return (crc ^ 0xFFFFFFFF) >>> 0;
+  }
+
+  function createZip(files) {
+    const fileEntries = [];
+    let offset = 0;
+
+    const encoder = new TextEncoder();
+
+    files.forEach(file => {
+      const nameBytes = encoder.encode(file.name);
+      const dataBytes = typeof file.content === 'string' ? encoder.encode(file.content) : file.content;
+      const size = dataBytes.length;
+      const checksum = crc32(dataBytes);
+
+      // Local File Header (30 bytes) + Name + Data
+      const header = new Uint8Array(30 + nameBytes.length);
+      const view = new DataView(header.buffer);
+      view.setUint32(0, 0x04034b50, true);  // Local file header signature
+      view.setUint16(4, 20, true);          // Version needed
+      view.setUint16(6, 0x0800, true);      // UTF-8 filenames
+      view.setUint16(8, 0, true);           // Compression: 0 (Store)
+      view.setUint16(10, 0, true);          // Time
+      view.setUint16(12, 33, true);         // Date: 1980-01-01
+      view.setUint32(14, checksum, true);   // CRC32
+      view.setUint32(18, size, true);       // Compressed size
+      view.setUint32(22, size, true);       // Uncompressed size
+      view.setUint16(26, nameBytes.length, true); // Name length
+      view.setUint16(28, 0, true);          // Extra field length
+      header.set(nameBytes, 30);
+
+      fileEntries.push({
+        nameBytes,
+        header,
+        dataBytes,
+        offset,
+        size,
+        checksum
+      });
+
+      offset += header.length + dataBytes.length;
+    });
+
+    // Central Directory
+    let centralDirSize = 0;
+    const centralEntries = fileEntries.map(entry => {
+      const cd = new Uint8Array(46 + entry.nameBytes.length);
+      const view = new DataView(cd.buffer);
+      view.setUint32(0, 0x02014b50, true);  // Central dir signature
+      view.setUint16(4, 20, true);          // Made by
+      view.setUint16(6, 20, true);          // Version needed
+      view.setUint16(8, 0x0800, true);      // UTF-8 filenames
+      view.setUint16(10, 0, true);          // Compression (Store)
+      view.setUint16(12, 0, true);          // Time
+      view.setUint16(14, 33, true);         // Date: 1980-01-01
+      view.setUint32(16, entry.checksum, true); // CRC32
+      view.setUint32(20, entry.size, true); // Compressed size
+      view.setUint32(24, entry.size, true); // Uncompressed size
+      view.setUint16(28, entry.nameBytes.length, true);
+      view.setUint16(30, 0, true);          // Extra length
+      view.setUint16(32, 0, true);          // Comment length
+      view.setUint16(34, 0, true);          // Disk start
+      view.setUint16(36, 0, true);          // Internal attrs
+      view.setUint32(38, 0, true);          // External attrs
+      view.setUint32(42, entry.offset, true);// Local header offset
+      cd.set(entry.nameBytes, 46);
+      centralDirSize += cd.length;
+      return cd;
+    });
+
+    // End of Central Directory Record (22 bytes)
+    const eocd = new Uint8Array(22);
+    const eocdView = new DataView(eocd.buffer);
+    eocdView.setUint32(0, 0x06054b50, true);  // EOCD signature
+    eocdView.setUint16(4, 0, true);           // Disk number
+    eocdView.setUint16(6, 0, true);           // Central dir disk
+    eocdView.setUint16(8, fileEntries.length, true);  // Disk entries
+    eocdView.setUint16(10, fileEntries.length, true); // Total entries
+    eocdView.setUint32(12, centralDirSize, true);     // Central dir size
+    eocdView.setUint32(16, offset, true);             // Central dir offset
+    eocdView.setUint16(20, 0, true);                  // Comment length
+
+    // Assemble parts into single Blob
+    const parts = [];
+    fileEntries.forEach(e => {
+      parts.push(e.header);
+      parts.push(e.dataBytes);
+    });
+    centralEntries.forEach(cd => parts.push(cd));
+    parts.push(eocd);
+
+    return new Blob(parts, { type: 'application/zip' });
+  }
+
+  // 6. Download Hub Trigger
+  // Pages builds a complete archive because its artifact excludes hidden files.
+  // On a local HTTP server, fall back to assembling all source files in-browser.
+  const repositoryFiles = [
+    '.github/workflows/pages.yml', '.gitignore',
+    'css/kinetic-serif.css', 'js/kinetic-serif.js',
+    'reference/kinetic-serif.json', 'reference/SKILL.md',
+    'reference/guide.md', 'reference/architecture-spec.md',
+    'starter/index.html', 'index.html', 'llms.txt', 'llms-full.txt',
+    'README.md', 'LICENSE', 'make_repo.py'
+  ];
+
+  window.downloadRepoZip = async function (btn) {
+    const origText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Compiling ZIP... ⏳';
+
+    try {
+      const archiveName = 'kinetic-construct-v1.2.3.zip';
+      const response = await fetch(new URL(archiveName, assetBase));
+      let blob;
+      if (response.ok) {
+        blob = await response.blob();
+      } else {
+        const files = await Promise.all(repositoryFiles.map(async path => {
+          const result = await fetch(new URL(path, assetBase));
+          if (!result.ok) throw new Error(`Could not fetch ${path}: HTTP ${result.status}`);
+          return { name: `kinetic-construct/${path}`, content: await result.text() };
+        }));
+        blob = createZip(files);
+      }
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = archiveName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+      btn.innerHTML = 'Downloaded! ✓';
+      setTimeout(() => { btn.innerHTML = origText; }, 2200);
+    } catch (err) {
+      console.error(err);
+      alert('Unable to download the complete repository. Serve this folder over HTTP, or run python3 make_repo.py to create the ZIP locally.');
+      btn.innerHTML = origText;
+    } finally {
+      btn.disabled = false;
+    }
+  };
+
+  // 7. Rail Scroll Sync
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      const id = sec.getAttribute('id');
+      if (scrollPos >= top && scrollPos < top + height) {
+        document.querySelectorAll('.rail-link').forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  });
+})();
+<!-- END js/kinetic-serif.js -->
+
+## Starter template
+Source: starter/index.html
+
+<!-- BEGIN starter/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Technical Guide — Kinetic Construct Starter</title>
+  <link rel="stylesheet" href="../css/kinetic-serif.css" />
+</head>
+<body>
+
+  <!-- Minimal Header -->
+  <header style="position: sticky; top: 0; z-index: 100; background: var(--bg-surface); border-bottom: var(--border-thick); padding: 10px var(--outer-gutter);">
+    <div style="max-width: var(--container-max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800;">kinetic construct<span>.</span></span>
+      <button type="button" id="themeToggleBtn" class="btn-tactile" onclick="toggleTheme()" style="font-size: 0.8125rem; min-height: 34px;">🌙 Nocturnal</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <div class="layout-grid">
+
+      <!-- 220px Left Rail -->
+      <aside class="sidebar-rail">
+        <span class="rail-tag">Chapters</span>
+        <a href="#intro" class="rail-link active">01 · Introduction</a>
+        <a href="#system" class="rail-link">02 · Architecture</a>
+      </aside>
+
+      <!-- Content Stage -->
+      <main class="main-stage">
+        <section id="intro" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill module">01 / OVERVIEW</span>
+            <h1>Your Guide Title Here.</h1>
+          </div>
+          <p>
+            Start writing your technical documentation using the locked <strong>Bitter 15px</strong> body prose measure.
+          </p>
+        </section>
+
+        <section id="system" class="content-card">
+          <div class="card-head">
+            <span class="eyebrow-pill root">02 / ARCHITECTURE</span>
+            <h2>System Topology.</h2>
+          </div>
+          <div class="code-wrapper">
+            <div class="code-header-bar">
+              <div class="file-tab"><span>main.tf</span></div>
+              <button type="button" class="copy-button" onclick="copySnippet(this)">Copy</button>
+            </div>
+            <div class="code-body">
+              <pre class="code-lines-col"><code>terraform {
+  required_version = ">= 1.9.0"
+}</code></pre>
+            </div>
+          </div>
+        </section>
+      </main>
+
+    </div>
+  </div>
+
+  <script src="../js/kinetic-serif.js"></script>
+</body>
+</html>
+<!-- END starter/index.html -->
+
+## Architecture specimen
+Source: reference/architecture-spec.md
+
+<!-- BEGIN reference/architecture-spec.md -->
+# Reference Architecture Specimen: GCP Terraform Monorepo & State Isolation
+
+## Conceptual Model
+
+Infrastructure as Code architecture separates into three orthogonal planes:
+
+## Architectural Laws
+
+1. **State Isolation over Folder Hierarchy**: State isolation is determined solely by backend prefix and bucket IAM permissions—never by folder nesting alone.
+2. **Deterministic Version Promotion**: Roots deploy against explicit Git commit SHAs, never floating branch heads or mutable tags.
+3. **Least Privilege Blast Perimeter**: Every root operates with a dedicated Google Service Account possessing permissions strictly bounded to that root's resources.
+4. **Independent GCS State Locks**: Each root locks its own independent state object, preventing multi-service lock contention.
+<!-- END reference/architecture-spec.md -->

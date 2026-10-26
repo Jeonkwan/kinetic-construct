@@ -1,0 +1,16 @@
+# Kinetic Construct (kinetic-serif v1.2.3)
+> A high-density editorial design system with tactile chrome, Warm Alabaster surfaces, and Botanical Field semantic accents.
+
+## Core Documentation
+- [Design System Guide](reference/guide.md): Editorial before ornamental, 3-role semantic rules, and spatial ergonomics.
+- [Design Tokens (JSON)](reference/kinetic-serif.json): Machine-readable CSS tokens, colors, typography scales, and chrome specifications.
+- [AI Companion Skill](reference/SKILL.md): Standard system prompt instructions for generating compliant architecture explainers.
+- [Architecture Specimen](reference/architecture-spec.md): GCP Terraform specimen with four architectural laws. The supplied Conceptual Model enumeration is missing.
+- [Full LLM Bundle](llms-full.txt): Consolidated guide, agent instructions, tokens, stylesheet, runtime, starter, and architecture fragment.
+
+## Quick CDN Links
+- [Stylesheet](css/kinetic-serif.css)
+- [Runtime JS](js/kinetic-serif.js)
+- [Starter Boilerplate](starter/index.html)
+
+Resolve these links relative to this manifest's URL, including the repository path on GitHub Pages.
