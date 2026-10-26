@@ -29,23 +29,57 @@
 
   const themeButton = document.getElementById('themeToggleBtn');
   if (themeButton) {
+    themeButton.hidden = false;
     themeButton.textContent = document.documentElement.getAttribute('data-theme') === 'dark'
       ? '☀️ Daylight' : '🌙 Nocturnal';
   }
 
   // 2. Clipboard Copy Helper
-  window.copySnippet = function (btn, textToCopy) {
+  window.copySnippet = async function (btn, textToCopy) {
     const text = textToCopy || btn.closest('.code-wrapper').querySelector('.code-lines-col').innerText;
-    navigator.clipboard.writeText(text).then(() => {
-      const orig = btn.innerText;
+    const orig = btn.innerText;
+    try {
+      await navigator.clipboard.writeText(text);
       btn.innerText = 'Copied! ✓';
-      setTimeout(() => { btn.innerText = orig; }, 1800);
-    });
+    } catch (_) {
+      btn.innerText = 'Select code to copy';
+    }
+    setTimeout(() => { btn.innerText = orig; }, 1800);
   };
+
+  // Progressive enhancement: the SVG, table, assumptions, and all code are HTML.
+  // Buttons select optional detail; they do not carry the lesson's core meaning.
+  document.querySelectorAll('[data-topology]').forEach(figure => {
+    const controls = figure.querySelector('.inspector-controls');
+    const status = figure.querySelector('.inspector-status');
+    const buttons = [...figure.querySelectorAll('[data-node]')];
+    const panels = [...figure.querySelectorAll('[data-detail]')];
+    function inspect(button) {
+      buttons.forEach(item => {
+        const selected = item === button;
+        item.classList.toggle('selected', selected);
+        item.setAttribute('aria-pressed', String(selected));
+      });
+      panels.forEach(panel => { panel.hidden = panel.dataset.detail !== button.dataset.node; });
+      status.textContent = `Inspecting ${button.textContent}`;
+    }
+    buttons.forEach(button => button.addEventListener('click', () => inspect(button)));
+    if (buttons.length) {
+      inspect(buttons[0]);
+      controls.hidden = false;
+      status.hidden = false;
+      figure.querySelectorAll('.copy-button').forEach(button => { button.hidden = false; });
+    }
+  });
 
   // 3. Topology Inspector Handler
   window.selectTopologyNode = function (btn, role, title, file, code, blastDesc) {
-    document.querySelectorAll('.node-btn').forEach(b => b.classList.remove('selected'));
+    const scope = btn.closest('[data-topology]') || document;
+    scope.querySelectorAll('.node-btn').forEach(b => {
+      b.classList.remove('selected');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    btn.setAttribute('aria-pressed', 'true');
     btn.classList.add('selected');
 
     const badge = document.getElementById('topologyInspBadge');
@@ -76,13 +110,13 @@
 
     if (teamSize === 'large' || blastRisk === 'strict') {
       resultCard.innerHTML = `
-        <div class="role-badge state" style="margin-bottom: 8px;">RECOMMENDED ARCHITECTURE</div>
+        <div class="role-badge state" style="margin-bottom: 8px;">ILLUSTRATIVE OPTION</div>
         <h3>Isolated Roots with Granular GCS State Boundaries</h3>
         <p>Deploy independent root configurations per service and environment with dedicated service accounts and separate state buckets to minimize blast radius.</p>
       `;
     } else {
       resultCard.innerHTML = `
-        <div class="role-badge root" style="margin-bottom: 8px;">RECOMMENDED ARCHITECTURE</div>
+        <div class="role-badge root" style="margin-bottom: 8px;">ILLUSTRATIVE OPTION</div>
         <h3>Lightweight Monorepo with Shared Modules</h3>
         <p>Maintain root configurations in a monorepo versioned by Git commit SHAs, referencing internal modules directly with change detection.</p>
       `;
@@ -199,8 +233,11 @@
   const repositoryFiles = [
     '.github/workflows/pages.yml', '.gitignore',
     'css/kinetic-serif.css', 'js/kinetic-serif.js',
-    'reference/kinetic-serif.json', 'reference/SKILL.md',
-    'reference/guide.md', 'reference/architecture-spec.md',
+    'reference/kinetic-serif.json', 'reference/SKILL.md', 'reference/agents/openai.yaml',
+    'reference/guide.md', 'reference/diagram-guide.md', 'reference/diagram-style.md',
+    'reference/architecture-spec.md', 'starter/diagram.html', 'sync_reference.py',
+    'docs/research/2026-10-26-information-design-review.md',
+    'docs/validation/2026-10-26-diagram-pilot.md',
     'starter/index.html', 'index.html', 'llms.txt', 'llms-full.txt',
     'README.md', 'LICENSE', 'make_repo.py'
   ];
@@ -255,7 +292,10 @@
       const id = sec.getAttribute('id');
       if (scrollPos >= top && scrollPos < top + height) {
         document.querySelectorAll('.rail-link').forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          const active = link.getAttribute('href') === `#${id}`;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
         });
       }
     });

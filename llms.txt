@@ -5,9 +5,16 @@
 
 - [Design System Guide](https://jeonkwan.github.io/kinetic-construct/reference/guide.md): Editorial before ornamental, 3-role semantic rules, and spatial ergonomics.
 - [Design Tokens (JSON)](https://jeonkwan.github.io/kinetic-construct/reference/kinetic-serif.json): Machine-readable CSS tokens, colors, typography scales, and chrome specifications.
-- [AI Companion Skill](https://jeonkwan.github.io/kinetic-construct/reference/SKILL.md): Standard system prompt instructions for generating compliant architecture explainers.
-- [Architecture Specimen](https://jeonkwan.github.io/kinetic-construct/reference/architecture-spec.md): GCP Terraform specimen with four architectural laws. The supplied Conceptual Model enumeration is missing.
+- [AI Companion Skill](https://jeonkwan.github.io/kinetic-construct/reference/SKILL.md): Explicit-only companion skill; preserves the requested output format and scope.
+- [Architecture Specimen](https://jeonkwan.github.io/kinetic-construct/reference/architecture-spec.md): Illustrative Terraform/GCS model, verified concepts, assumptions, and historical policies. The original three-plane enumeration remains unknown.
 - [Full LLM Bundle](https://jeonkwan.github.io/kinetic-construct/llms-full.txt): Consolidated guide, agent instructions, tokens, stylesheet, runtime, starter, and architecture specimen.
+
+- [Diagram Guide](https://jeonkwan.github.io/kinetic-construct/reference/diagram-guide.md): Representation selector, node/edge/boundary grammar, static equivalents, keyboard contract, and reader checks.
+- [Diagram Style](https://jeonkwan.github.io/kinetic-construct/reference/diagram-style.md): Project-local skin adapting the diagram skill to Kinetic Serif.
+- [Complete Topology Specimen](https://jeonkwan.github.io/kinetic-construct/starter/diagram.html): Canonical copyable HTML/SVG source, text equivalent, assumptions, and optional inspector.
+- [Pilot Validation](https://jeonkwan.github.io/kinetic-construct/docs/validation/2026-10-26-diagram-pilot.md): Recorded checks and limitations.
+
+- [Skill Invocation Policy](https://jeonkwan.github.io/kinetic-construct/reference/agents/openai.yaml): Disables implicit invocation in Codex; install with the entire reference skill folder.
 
 ## Quick CDN Links
 

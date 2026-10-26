@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shared code. Separate state. — Kinetic Construct</title>
+  <link rel="stylesheet" href="../css/kinetic-serif.css" />
+</head>
+<body>
+  <header class="pilot-header app-shell">
+    <a href="../index.html#ch03" style="font-family:var(--font-display);font-size:1.25rem;font-weight:800">kinetic construct.</a>
+    <button type="button" id="themeToggleBtn" class="btn-tactile" onclick="toggleTheme()" hidden>🌙 Nocturnal</button>
+  </header>
+  <main class="pilot-main">
+<!-- BEGIN module-state specimen -->
+<section id="ch03" class="content-card" aria-labelledby="specimen-heading" data-topology>
+  <div class="card-head">
+    <span class="eyebrow-pill">03 / RELATIONSHIP SPECIMEN · TERRAFORM / GCS</span>
+    <h2 id="specimen-heading">Shared code. Separate state.</h2>
+  </div>
+  <p><strong>Can two deployments share module code while keeping their state separate?</strong> Yes. Here, two independently run root configurations call the same module source and use distinct backend state objects.</p>
+  <figure class="diagram-figure" aria-labelledby="specimen-heading" aria-describedby="topology-caption">
+    <p class="diagram-scope">Scope: configuration dependencies and state associations. Each root-to-state edge represents the Terraform run from that root. Deployed Cloud SQL instances, credentials, networks, and release ordering are omitted.</p>
+    <p class="diagram-hint" id="diagram-scroll-hint">On a narrow screen, scroll the figure horizontally or read the relationship table below.</p>
+    <div class="diagram-scroll" tabindex="0" role="region" aria-label="Module and state relationship overview" aria-describedby="diagram-scroll-hint">
+<svg class="relationship-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" role="img" aria-labelledby="topology-title topology-desc">
+  <title id="topology-title">Shared module source, separate environment state</title>
+  <desc id="topology-desc">Dev and prod root configurations both call the same Cloud SQL module source. Assuming no cross-state reads, a Terraform run from each root reads and writes its own state object. Dashed environment scopes group each root with its state association; they are not IAM or network boundaries. Deployed resources are omitted. The relationship table below gives all four edges.</desc>
+  <defs><marker id="topology-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="edge-tip" d="M 0 0 L 10 5 L 0 10 z"/></marker></defs>
+  <rect class="scope-bound" x="320" y="32" width="540" height="196" rx="6"/>
+  <rect class="scope-bound" x="320" y="272" width="540" height="196" rx="6"/>
+  <text x="340" y="60" class="diagram-type">DEV · configuration scope</text>
+  <text x="340" y="300" class="diagram-type">PROD · configuration scope</text>
+  <!-- Direction is subject → object; these are relationships, not a timeline. -->
+  <path class="edge" d="M 350 146 H 143 Q 135 146 135 154 V 201" marker-end="url(#topology-arrow)"/>
+  <path class="edge" d="M 350 386 H 143 Q 135 386 135 378 V 309" marker-end="url(#topology-arrow)"/>
+  <path class="edge" d="M 540 146 H 648" marker-end="url(#topology-arrow)"/>
+  <path class="edge" d="M 540 386 H 648" marker-end="url(#topology-arrow)"/>
+  <rect class="edge-label-bg" x="142" y="112" width="160" height="25"/>
+  <rect class="edge-label-bg" x="142" y="352" width="160" height="25"/>
+  <text x="154" y="130">calls source</text>
+  <text x="154" y="370">calls source</text>
+  <rect class="scope-edge-label" x="546" y="98" width="98" height="38"/>
+  <rect class="scope-edge-label" x="546" y="338" width="98" height="38"/>
+  <text x="594" y="112" text-anchor="middle"><tspan x="594">reads/writes </tspan><tspan x="594" dy="20">state</tspan></text>
+  <text x="594" y="352" text-anchor="middle"><tspan x="594">reads/writes </tspan><tspan x="594" dy="20">state</tspan></text>
+  <g class="module">
+    <rect class="node-box" x="20" y="202" width="230" height="106"/>
+    <text x="36" y="228" class="diagram-type">01 / MODULE SOURCE</text>
+    <text x="36" y="255" class="diagram-name">Cloud SQL blueprint</text>
+    <text x="36" y="281" class="diagram-id">modules/cloud-sql-ha</text>
+  </g>
+  <g class="root">
+    <rect class="node-box" x="350" y="94" width="190" height="104"/>
+    <text x="366" y="120" class="diagram-type">02 / ROOT CONFIG</text>
+    <text x="366" y="151" class="diagram-name">Dev root</text>
+    <text x="366" y="178" class="diagram-id">envs/dev/cloud-sql</text>
+    <rect class="node-box" x="350" y="334" width="190" height="104"/>
+    <text x="366" y="360" class="diagram-type">04 / ROOT CONFIG</text>
+    <text x="366" y="391" class="diagram-name">Prod root</text>
+    <text x="366" y="418" class="diagram-id">envs/prod/cloud-sql</text>
+  </g>
+  <g class="state">
+    <rect class="node-box" x="650" y="94" width="190" height="104"/>
+    <text x="666" y="120" class="diagram-type">03 / STATE OBJECT</text>
+    <text x="666" y="151" class="diagram-name">Dev ledger</text>
+    <text x="666" y="178" class="diagram-id">dev/default.tfstate</text>
+    <rect class="node-box" x="650" y="334" width="190" height="104"/>
+    <text x="666" y="360" class="diagram-type">05 / STATE OBJECT</text>
+    <text x="666" y="391" class="diagram-name">Prod ledger</text>
+    <text x="666" y="418" class="diagram-id">prod/default.tfstate</text>
+  </g>
+</svg>
+    </div>
+    <ul class="diagram-legend" aria-label="Diagram legend">
+      <li><span class="role-badge module">MODULE SOURCE</span> Reusable definition</li>
+      <li><span class="role-badge root">ROOT CONFIG</span> Entry point for a Terraform run</li>
+      <li><span class="role-badge state">STATE OBJECT</span> Persisted resource mapping</li>
+      <li><strong>→</strong> Subject → object, with the relationship named</li>
+      <li><strong>Dashed box</strong> Environment association; no security guarantee</li>
+    </ul>
+    <figcaption id="topology-caption" class="diagram-caption"><strong>Sharing source does not require sharing state.</strong> Both roots call one blueprint; each root's Terraform run reads/writes a different state object. The green nodes are configurations used for execution, not running database instances.</figcaption>
+  </figure>
+  <table class="relationship-table">
+    <caption>The same relationships, in reading order</caption>
+    <thead><tr><th scope="col">From</th><th scope="col">Relationship →</th><th scope="col">To</th></tr></thead>
+    <tbody>
+      <tr><td>02 · Dev root</td><td>Calls module source</td><td>01 · Cloud SQL blueprint</td></tr>
+      <tr><td>04 · Prod root</td><td>Calls module source</td><td>01 · Cloud SQL blueprint</td></tr>
+      <tr><td>02 · Dev root's Terraform run</td><td>Reads / writes state</td><td>03 · Dev ledger</td></tr>
+      <tr><td>04 · Prod root's Terraform run</td><td>Reads / writes state</td><td>05 · Prod ledger</td></tr>
+    </tbody>
+  </table>
+  <div class="specimen-notes">
+    <p><strong>Illustrative assumptions.</strong> Both roots use the same repository revision and the <code>default</code> workspace. One pre-existing example bucket, <code>kc-state-example</code>, uses distinct prefixes <code>dev</code> and <code>prod</code>, producing <code>gs://kc-state-example/dev/default.tfstate</code> and <code>gs://kc-state-example/prod/default.tfstate</code>. These names do not identify deployed infrastructure.</p>
+    <p><strong>Limits.</strong> Distinct objects separate state storage, but do not establish IAM isolation or prevent both roots from targeting the same real resource. Assume distinct resource identities and no cross-state reads for this example. State records resource mappings, not application data. A local source edit can affect both roots on their next run; sharing source does not deploy either root automatically.</p>
+  </div>
+  <details class="diagram-inspector">
+    <summary>Inspect illustrative configuration &amp; code</summary>
+    <div class="inspector-layout">
+      <div class="inspector-controls" hidden role="group" aria-label="Choose a node to inspect">
+<button type="button" class="btn-tactile node-btn" data-node="module" aria-pressed="false" aria-controls="detail-module">01 · Module source</button>
+<button type="button" class="btn-tactile node-btn" data-node="dev-root" aria-pressed="false" aria-controls="detail-dev-root">02 · Dev root</button>
+<button type="button" class="btn-tactile node-btn" data-node="dev-state" aria-pressed="false" aria-controls="detail-dev-state">03 · Dev ledger</button>
+<button type="button" class="btn-tactile node-btn" data-node="prod-root" aria-pressed="false" aria-controls="detail-prod-root">04 · Prod root</button>
+<button type="button" class="btn-tactile node-btn" data-node="prod-state" aria-pressed="false" aria-controls="detail-prod-state">05 · Prod ledger</button>
+      </div>
+      <div class="inspector-readout">
+        <p class="inspector-status" role="status" aria-live="polite" aria-atomic="true" hidden>Inspecting 01 · Module source</p>
+<article class="node-detail" id="detail-module" data-detail="module" aria-labelledby="title-module">
+  <span class="role-badge module">MODULE</span>
+  <h3 id="title-module">01 · Module source</h3>
+  <p>This excerpt shows the resource shape only. Provider configuration, inputs, networking, and resource settings are omitted. A child module does not receive an independent backend merely because it has its own folder.</p>
+  <div class="code-wrapper">
+    <div class="code-header-bar"><span class="file-tab">modules/cloud-sql-ha/main.tf</span><button type="button" class="copy-button" onclick="copySnippet(this)" hidden>Copy</button></div>
+    <div class="code-body" tabindex="0" role="region" aria-label="modules/cloud-sql-ha/main.tf"><pre class="code-lines-col"><code>resource &quot;google_sql_database_instance&quot; &quot;primary&quot; {
+  name             = var.instance_name
+  database_version = &quot;POSTGRES_15&quot;
+  # Required settings and other inputs omitted.
+}</code></pre></div>
+  </div>
+</article>
+<article class="node-detail" id="detail-dev-root" data-detail="dev-root" aria-labelledby="title-dev-root">
+  <span class="role-badge root">ROOT</span>
+  <h3 id="title-dev-root">02 · Dev root</h3>
+  <p>Run Terraform independently from this root. The same source path is resolved relative to each root; use distinct inputs and resource identities.</p>
+  <div class="code-wrapper">
+    <div class="code-header-bar"><span class="file-tab">envs/dev/cloud-sql/main.tf</span><button type="button" class="copy-button" onclick="copySnippet(this)" hidden>Copy</button></div>
+    <div class="code-body" tabindex="0" role="region" aria-label="envs/dev/cloud-sql/main.tf"><pre class="code-lines-col"><code>module &quot;database&quot; {
+  source        = &quot;../../../modules/cloud-sql-ha&quot;
+  instance_name = &quot;example-dev-db&quot;
+  # Other module inputs omitted.
+}</code></pre></div>
+  </div>
+</article>
+<article class="node-detail" id="detail-dev-state" data-detail="dev-state" aria-labelledby="title-dev-state">
+  <span class="role-badge state">STATE</span>
+  <h3 id="title-dev-state">03 · Dev ledger</h3>
+  <p>With the default workspace, this backend stores state at gs://kc-state-example/dev/default.tfstate. The bucket must already exist. Authentication and IAM are configured separately.</p>
+  <div class="code-wrapper">
+    <div class="code-header-bar"><span class="file-tab">envs/dev/cloud-sql/backend.tf</span><button type="button" class="copy-button" onclick="copySnippet(this)" hidden>Copy</button></div>
+    <div class="code-body" tabindex="0" role="region" aria-label="envs/dev/cloud-sql/backend.tf"><pre class="code-lines-col"><code>terraform {
+  backend &quot;gcs&quot; {
+    bucket = &quot;kc-state-example&quot;
+    prefix = &quot;dev&quot;
+  }
+}</code></pre></div>
+  </div>
+</article>
+<article class="node-detail" id="detail-prod-root" data-detail="prod-root" aria-labelledby="title-prod-root">
+  <span class="role-badge root">ROOT</span>
+  <h3 id="title-prod-root">04 · Prod root</h3>
+  <p>This second root calls the same blueprint. Separate state is not a guarantee of independent permissions, resource targets, or failure impact.</p>
+  <div class="code-wrapper">
+    <div class="code-header-bar"><span class="file-tab">envs/prod/cloud-sql/main.tf</span><button type="button" class="copy-button" onclick="copySnippet(this)" hidden>Copy</button></div>
+    <div class="code-body" tabindex="0" role="region" aria-label="envs/prod/cloud-sql/main.tf"><pre class="code-lines-col"><code>module &quot;database&quot; {
+  source        = &quot;../../../modules/cloud-sql-ha&quot;
+  instance_name = &quot;example-prod-db&quot;
+  # Other module inputs omitted.
+}</code></pre></div>
+  </div>
+</article>
+<article class="node-detail" id="detail-prod-state" data-detail="prod-state" aria-labelledby="title-prod-state">
+  <span class="role-badge state">STATE</span>
+  <h3 id="title-prod-state">05 · Prod ledger</h3>
+  <p>With the default workspace, this backend stores state at gs://kc-state-example/prod/default.tfstate. GCS supports state locking; locking does not create an environment-wide transaction.</p>
+  <div class="code-wrapper">
+    <div class="code-header-bar"><span class="file-tab">envs/prod/cloud-sql/backend.tf</span><button type="button" class="copy-button" onclick="copySnippet(this)" hidden>Copy</button></div>
+    <div class="code-body" tabindex="0" role="region" aria-label="envs/prod/cloud-sql/backend.tf"><pre class="code-lines-col"><code>terraform {
+  backend &quot;gcs&quot; {
+    bucket = &quot;kc-state-example&quot;
+    prefix = &quot;prod&quot;
+  }
+}</code></pre></div>
+  </div>
+</article>
+      </div>
+    </div>
+  </details>
+  <p class="diagram-scope">Reuse: <a href="../starter/diagram.html">standalone HTML source</a> · <a href="../reference/diagram-guide.md">notation &amp; authoring guide</a> · <a href="../reference/architecture-spec.md">technical checks &amp; assumptions</a>. This is a teaching model, not a deployable configuration.</p>
+</section>
+<!-- END module-state specimen -->
+  </main>
+  <script src="../js/kinetic-serif.js"></script>
+</body>
+</html>

@@ -13,8 +13,15 @@ REPO_FILES = (
     "js/kinetic-serif.js",
     "reference/kinetic-serif.json",
     "reference/SKILL.md",
+    "reference/agents/openai.yaml",
     "reference/guide.md",
     "reference/architecture-spec.md",
+    "reference/diagram-guide.md",
+    "reference/diagram-style.md",
+    "starter/diagram.html",
+    "sync_reference.py",
+    "docs/research/2026-10-26-information-design-review.md",
+    "docs/validation/2026-10-26-diagram-pilot.md",
     "starter/index.html",
     "index.html",
     "llms.txt",
@@ -29,6 +36,11 @@ def main():
     missing = [name for name in REPO_FILES if not (REPO_DIR / name).is_file()]
     if missing:
         raise SystemExit("Missing repository files: " + ", ".join(missing))
+
+    # Fail instead of packaging stale mirrored examples or agent guidance.
+    import subprocess
+    import sys
+    subprocess.run([sys.executable, str(REPO_DIR / "sync_reference.py"), "--check"], check=True)
 
     output = REPO_DIR / ZIP_NAME
     with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED) as archive:

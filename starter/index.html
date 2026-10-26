@@ -20,7 +20,7 @@
     <div class="layout-grid">
 
       <!-- 220px Left Rail -->
-      <aside class="sidebar-rail">
+      <aside class="sidebar-rail" aria-label="Guide chapters">
         <span class="rail-tag">Chapters</span>
         <a href="#intro" class="rail-link active">01 · Introduction</a>
         <a href="#system" class="rail-link">02 · Architecture</a>
@@ -30,19 +30,21 @@
       <main class="main-stage">
         <section id="intro" class="content-card">
           <div class="card-head">
-            <span class="eyebrow-pill module">01 / OVERVIEW</span>
+            <span class="eyebrow-pill">01 / OVERVIEW</span>
             <h1>Your Guide Title Here.</h1>
           </div>
           <p>
-            Start writing your technical documentation using the locked <strong>Bitter 15px</strong> body prose measure.
+            Name the reader, their question, the scope, and the takeaway before choosing a representation. Keep the answer visible before optional interaction.
           </p>
         </section>
 
         <section id="system" class="content-card">
           <div class="card-head">
-            <span class="eyebrow-pill root">02 / ARCHITECTURE</span>
-            <h2>System Topology.</h2>
+            <span class="eyebrow-pill">02 / ARCHITECTURE</span>
+            <h2>Choose the form that answers the question.</h2>
           </div>
+          <p>Use prose for an explanation, a table for comparison, topology for dependencies, sequence for messages over time, a flowchart for decisions, and a state diagram for transitions. See the <a href="../reference/diagram-guide.md">selection and notation guide</a>.</p>
+          <p>For a complete relationship figure with a text equivalent and optional inspector, copy the <a href="diagram.html">module/root/state specimen</a>. Its Terraform assumptions belong to that example.</p>
           <div class="code-wrapper">
             <div class="code-header-bar">
               <div class="file-tab"><span>main.tf</span></div>

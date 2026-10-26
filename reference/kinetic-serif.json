@@ -23,7 +23,7 @@
       "root": {
         "hex": "#15803D",
         "surface": "#DCFCE7",
-        "role": "Execution Boundary / Deployed Root / Runtime"
+        "role": "Execution Entry Configuration / Runtime Boundary / Active Service"
       },
       "state": {
         "hex": "#9A3412",
@@ -34,7 +34,10 @@
     "typography": {
       "display": {
         "family": "Fraunces, Georgia, serif",
-        "weights": [700, 800]
+        "weights": [
+          700,
+          800
+        ]
       },
       "prose": {
         "family": "Bitter, Georgia, serif",
@@ -64,7 +67,8 @@
       "sectionGap": "22px",
       "cardPadding": "14px",
       "wellPadding": "12px",
-      "gridGap": "12px"
+      "gridGap": "12px",
+      "mobileNavigation": "<=960px: non-sticky horizontal scrolling row"
     },
     "codeBlock": {
       "theme": "alabaster-book",
@@ -77,9 +81,53 @@
         "string": "#9A3412",
         "type": "#3730A3",
         "attribute": "#0369A1",
-        "comment": "#736E62",
+        "comment": "#625D52",
         "punctuation": "#44403C"
       }
+    },
+    "actions": {
+      "background": "#15803D",
+      "foreground": "#FAF7F0"
+    },
+    "interaction": {
+      "activeTranslate": "2px 2px",
+      "selected": "neutral 2px outline, 2px offset, check mark, aria-pressed",
+      "focus": "neutral 3px outline, 4px offset"
+    },
+    "diagram": {
+      "viewBox": "0 0 880 480",
+      "minWidth": "880px",
+      "proseSize": "15px",
+      "technicalSize": "13px",
+      "nodeNameSize": "20px",
+      "overflow": "local horizontal scroll"
     }
-  }
+  },
+  "darkOverrides": {
+    "--bg-canvas": "#0E131B",
+    "--bg-surface": "#161F2C",
+    "--bg-well": "#1E293B",
+    "--ink-primary": "#F1F5F9",
+    "--ink-prose": "#E2E8F0",
+    "--ink-muted": "#94A3B8",
+    "--accent-module": "#818CF8",
+    "--accent-module-bg": "rgba(99, 102, 241, 0.18)",
+    "--accent-root": "#34D399",
+    "--accent-root-bg": "rgba(16, 185, 129, 0.18)",
+    "--accent-state": "#FB923C",
+    "--accent-state-bg": "rgba(249, 115, 22, 0.18)",
+    "--action-bg": "#34D399",
+    "--action-ink": "#0E131B",
+    "--code-bg": "#111618",
+    "--code-header-bg": "#171E20",
+    "--code-text": "#E5E9E7",
+    "--code-num": "#5B6B67",
+    "--syn-keyword": "#6EE7B7",
+    "--syn-string": "#FDBA74",
+    "--syn-type": "#93C5FD",
+    "--syn-attr": "#C4B5FD",
+    "--syn-comment": "#8C9D97",
+    "--syn-punct": "#9CA3AF"
+  },
+  "tokenAuthority": "css/kinetic-serif.css; tokens are light values, darkOverrides use CSS variable names"
 }

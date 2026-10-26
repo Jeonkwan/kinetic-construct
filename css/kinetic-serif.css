@@ -22,6 +22,9 @@
   --accent-state: #9A3412;
   --accent-state-bg: #FFEDD5;
 
+  --action-bg: #15803D;
+  --action-ink: #FAF7F0;
+
   /* Tactile Chrome & Mechanical Depth */
   --border-thick: 2px solid var(--ink-primary);
   --border-hairline: 1px solid var(--ink-primary);
@@ -53,7 +56,7 @@
   --syn-string: #9A3412;
   --syn-type: #3730A3;
   --syn-attr: #0369A1;
-  --syn-comment: #736E62;
+  --syn-comment: #625D52;
   --syn-punct: #44403C;
 }
 
@@ -72,6 +75,9 @@
   --accent-state: #FB923C;
   --accent-state-bg: rgba(249, 115, 22, 0.18);
 
+  --action-bg: #34D399;
+  --action-ink: #0E131B;
+
   --code-bg: #111618;
   --code-header-bg: #171E20;
   --code-text: #E5E9E7;
@@ -80,7 +86,7 @@
   --syn-string: #FDBA74;
   --syn-type: #93C5FD;
   --syn-attr: #C4B5FD;
-  --syn-comment: #6B7C77;
+  --syn-comment: #8C9D97;
   --syn-punct: #9CA3AF;
 }
 
@@ -275,8 +281,8 @@ p + p {
 }
 
 .btn-tactile.primary {
-  background: var(--accent-root);
-  color: #FFFFFF;
+  background: var(--action-bg);
+  color: var(--action-ink);
   border-color: var(--ink-primary);
 }
 
@@ -341,7 +347,7 @@ p + p {
   border-radius: 4px;
   padding: 4px 8px;
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -395,5 +401,103 @@ p + p {
   .sidebar-rail {
     position: static;
     max-height: none;
+    flex-direction: row;
+    overflow-x: auto;
+    align-items: center;
+  }
+  .sidebar-rail > * {
+    flex: 0 0 auto;
+  }
+}
+
+/* Relationship figures: meaning is static; optional inspection is tactile. */
+[hidden] { display: none !important; }
+:where(a, button, summary, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--ink-primary);
+  outline-offset: 4px;
+}
+a { color: var(--ink-primary); text-underline-offset: 3px; }
+code, pre { font-family: var(--font-mono); font-size: 0.8125rem; }
+small { font-size: 0.8125rem; }
+section[id] { scroll-margin-top: 110px; }
+figure, details, .diagram-inspector, .relationship-table { min-width: 0; }
+.diagram-figure { display: grid; gap: 12px; }
+.diagram-scope, .diagram-hint { color: var(--ink-muted); font-size: 0.8125rem; }
+.diagram-scroll { overflow-x: auto; border: 1px solid var(--ink-primary); border-radius: 5px; background: var(--bg-canvas); }
+.relationship-diagram { display: block; width: 100%; min-width: 880px; height: auto; }
+.relationship-diagram text { fill: var(--ink-prose); font-family: var(--font-prose); font-size: 15px; }
+.relationship-diagram .diagram-type { font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
+.relationship-diagram .diagram-name { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+.relationship-diagram .diagram-id { font-family: var(--font-mono); font-size: 13px; }
+.relationship-diagram .scope-bound { fill: var(--bg-surface); stroke: var(--ink-muted); stroke-width: 1.5; stroke-dasharray: 6 5; }
+.relationship-diagram .node-box { stroke-width: 2; rx: 6px; }
+.relationship-diagram .module .node-box { fill: var(--accent-module-bg); stroke: var(--accent-module); }
+.relationship-diagram .root .node-box { fill: var(--accent-root-bg); stroke: var(--accent-root); }
+.relationship-diagram .state .node-box { fill: var(--accent-state-bg); stroke: var(--accent-state); }
+.relationship-diagram .edge { fill: none; stroke: var(--ink-primary); stroke-width: 2; }
+.relationship-diagram .edge-tip { fill: var(--ink-primary); }
+.relationship-diagram .edge-label-bg { fill: var(--bg-canvas); }
+.relationship-diagram .scope-edge-label { fill: var(--bg-surface); }
+.diagram-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; list-style: none; }
+.diagram-legend li { font-size: 0.8125rem; }
+.diagram-caption { max-width: 75ch; }
+.relationship-table { width: 100%; border-collapse: collapse; }
+.relationship-table caption { text-align: left; font-weight: 600; margin-bottom: 8px; }
+.relationship-table th, .relationship-table td { padding: 8px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--ink-muted); overflow-wrap: anywhere; }
+.relationship-table th { font-size: 0.8125rem; font-family: var(--font-mono); }
+.relationship-table td { font-size: 0.9375rem; }
+.diagram-inspector { border-top: 1px solid var(--ink-primary); padding-top: 12px; }
+summary { cursor: pointer; font-weight: 600; color: var(--ink-primary); }
+.diagram-inspector[open] > .inspector-layout { margin-top: 12px; }
+.inspector-layout { display: grid; grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.3fr); gap: 12px; }
+.inspector-controls { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+.node-btn { text-align: left; justify-content: flex-start; }
+.node-btn::before { content: '○'; }
+.node-btn.selected { outline: 2px solid var(--ink-primary); outline-offset: 2px; background: var(--bg-well); }
+.node-btn.selected::before { content: '✓'; }
+.node-detail { display: grid; align-content: start; gap: 10px; }
+.node-detail + .node-detail { margin-top: 16px; }
+.node-detail[hidden] + .node-detail { margin-top: 0; }
+.inspector-readout { min-width: 0; }
+.inspector-status { margin-bottom: 10px; font-family: var(--font-mono); font-size: 0.8125rem; }
+.specimen-notes { border-left: 3px solid var(--ink-muted); padding-left: 12px; }
+.specimen-notes p { font-size: 0.875rem; }
+.pilot-header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.pilot-main { max-width: 1100px; margin: 0 auto; padding: var(--outer-gutter); }
+@media (max-width: 960px) {
+  .inspector-layout { grid-template-columns: minmax(0, 1fr); }
+  .inspector-controls { flex-direction: row; flex-wrap: wrap; }
+}
+@media (max-width: 600px) {
+  body > header { position: static !important; }
+  body > header > div, body > header > div > div { flex-wrap: wrap; gap: 8px !important; }
+  .relationship-table th, .relationship-table td { padding: 6px 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+}
+@media print {
+  body > header, .sidebar-rail, .inspector-controls, .inspector-status, .copy-button, .diagram-hint { display: none !important; }
+  .layout-grid { display: block; }
+  .content-card { box-shadow: none; break-inside: avoid; }
+  .diagram-scroll { overflow: visible; }
+  .relationship-diagram { min-width: 0; }
+  .diagram-inspector { display: none; }
+}
+
+/* Focus must remain distinct even when the focused button is selected. */
+.node-btn:focus-visible { outline: 3px solid var(--ink-primary); outline-offset: 4px; }
+p, .file-tab { overflow-wrap: anywhere; }
+.code-header-bar { flex-wrap: wrap; gap: 6px; }
+.file-tab { min-width: 0; }
+
+.inspector-controls[hidden] + .inspector-readout { grid-column: 1 / -1; }
+@media print {
+  :root, [data-theme="dark"] {
+    --bg-canvas: #F4F0E6; --bg-surface: #FAF7F0; --bg-well: #EAE4D7;
+    --ink-primary: #111111; --ink-prose: #222222; --ink-muted: #4A4740;
+    --accent-module: #3730A3; --accent-module-bg: #E0E7FF;
+    --accent-root: #15803D; --accent-root-bg: #DCFCE7;
+    --accent-state: #9A3412; --accent-state-bg: #FFEDD5;
   }
 }

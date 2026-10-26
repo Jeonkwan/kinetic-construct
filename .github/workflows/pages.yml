@@ -28,6 +28,9 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Check Reference Consistency
+        run: python3 sync_reference.py --check
+
       - name: Build Complete Repository Download
         run: python3 make_repo.py
 
